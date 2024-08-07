@@ -16,14 +16,14 @@ pub fn guess_num(secret: Option<u8>) {
         .read_line(&mut guess)
         .expect("Could not read line");
 
-    guess = guess.trim().to_string();
+    guess = guess.trim().into();
 
     if guess.trim().is_empty() || guess.eq(":q") {
         println!("Sad to see you go, please come play som time");
         return;
     }
 
-    let guessed_num = guess.parse::<u8>().expect("Invalid number input");
+    let guessed_num: u8 = guess.parse().expect("Invalid number input");
 
     let is_correct = guessed_num == num_in_mind;
 
